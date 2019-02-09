@@ -3,9 +3,9 @@ package com.superogi.client;
 import com.superogi.client.input.KeyManager;
 import com.superogi.client.input.MouseManager;
 import com.superogi.client.network.ClientConnectionHandler;
-import com.superogi.client.network.PacketHandler;
 import com.superogi.client.renderEngine.graphics.GameCamera;
 import com.superogi.client.worlds.World;
+import com.superogi.server.network.PacketHandler;
 
 public class GameHandler {
 
@@ -14,7 +14,6 @@ public class GameHandler {
 	private PingHandler pingHandler;
 	private long authID;
 	private ClientConnectionHandler cch;
-	private final PacketHandler ph;
 
 	public long getAuthID() {
 		return authID;
@@ -23,7 +22,6 @@ public class GameHandler {
 	public GameHandler(Game game, ClientConnectionHandler cch) {
 		this.cch = cch;
 		this.game = game;
-		this.ph = new PacketHandler();
 	}
 
 	public GameCamera getGameCamera() {
@@ -60,10 +58,6 @@ public class GameHandler {
 
 	public void setWorld(World world) {
 		this.world = world;
-	}
-
-	public PacketHandler getPacketHandler() {
-		return ph;
 	}
 
 	public PingHandler getPingHandler() {
