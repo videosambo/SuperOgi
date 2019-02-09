@@ -1,21 +1,25 @@
 package com.superogi.server.network;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map.Entry;
 import java.util.Set;
 
+import com.superogi.packet.ChangePositionPacket;
+import com.superogi.packet.ChangePositionResponsePacket;
 import com.superogi.packet.Packet;
 import com.superogi.packet.PingPacket;
+import com.superogi.packet.PingResponsePacket;
+import com.superogi.server.ServerClient;
 
 public class ServerNetworkManager {
 
+	private final HashMap<ServerClient, HashSet<Packet>> incomingPackets = new HashMap<>();
 	private final Set<SingleConnectionHandler> HANDLERS = new HashSet<>();
 
 	private final Thread networkThread;
 	public final String bindAddress;
 	public final int port;
-
-	// Packets
-	private final Set<Packet> incomingPackets = new HashSet<>();
 
 	public ServerNetworkManager(String ip, int port) {
 		this.bindAddress = ip;
@@ -40,19 +44,28 @@ public class ServerNetworkManager {
 	}
 
 	private void handleQueuedPackets() {
-		for (Packet p : incomingPackets) {
-			if (p instanceof PingPacket) {
-
+		for (Entry<ServerClient, HashSet<Packet>> entry : incomingPackets.entrySet()) {
+			for (Packet packet : entry.getValue()) {
+				processPacket(entry.getKey(), packet);
 			}
+		}
+		incomingPackets.clear();
+	}
+
+	private void processPacket(ServerClient client, Packet packet) {
+		if (packet instanceof PingPacket) {
+			client.getConnectionHandler().sendPacket(new PingResponsePacket());
+		} else if (packet instanceof ChangePositionPacket) {
+			// TODO: Check for illegal moves
+			ChangePositionPacket p = (ChangePositionPacket) packet;
+			float approvedX = p.getNewX();
+			float approvedY = p.getNewY();
+			client.getConnectionHandler().sendPacket(new ChangePositionResponsePacket(approvedX, approvedY));
 		}
 	}
 
 	public void startListening() {
 		networkThread.start();
-	}
-
-	public Set<Packet> getIncomingPackets() {
-		return incomingPackets;
 	}
 
 	public void addSocketHandler(final SingleConnectionHandler connectionHandler) {
