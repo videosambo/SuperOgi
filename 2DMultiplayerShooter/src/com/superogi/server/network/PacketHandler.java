@@ -5,7 +5,7 @@ import com.superogi.server.ServerClient;
 
 public class PacketHandler {
 
-	public void handlePingPacket(ServerClient c, long pingID) {
-		c.getConnectionHandler().sendPacket(new PingResponsePacket());
+	public void handlePingPacket(ServerClient c, int pingID) {
+		c.getConnectionHandler().sendPacket(new PingResponsePacket(pingID));
 	}
 }
