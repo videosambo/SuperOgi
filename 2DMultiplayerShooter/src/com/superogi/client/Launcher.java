@@ -1,4 +1,4 @@
-package com.videosambo.client;
+package com.superogi.client;
 
 public class Launcher {
 	
