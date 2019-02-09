@@ -69,6 +69,7 @@ public class ClientConnectionHandler {
 	}
 
 	public void connect(String ip, int port) throws UnknownHostException, IOException {
+		System.out.println("Connecting to " + ip + ":" + port);
 		this.connection = new Connection(new Socket(ip, port));
 		System.out.println("Connected to server " + ip + "!");
 	}

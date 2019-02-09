@@ -10,7 +10,6 @@ import com.superogi.packet.ResponsePacket;
 
 public class SingleConnectionHandler extends Thread {
 	private final Socket socket;
-	private final ServerNetworkManager man;
 	private ObjectOutputStream bos;
 	private ObjectInputStream br;
 
@@ -18,7 +17,8 @@ public class SingleConnectionHandler extends Thread {
 		this.socket = soc;
 		this.bos = new ObjectOutputStream(soc.getOutputStream());
 		this.br = new ObjectInputStream(soc.getInputStream());
-		this.man = man;
+		
+		System.out.println("New connection from " + socket.getInetAddress().toString() + ":" + socket.getPort());
 	}
 
 	@Override

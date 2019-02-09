@@ -17,14 +17,6 @@ public class ServerNetworkManager {
 	private final HashMap<ServerClient, HashSet<Packet>> incomingPackets = new HashMap<>();
 	private final Set<SingleConnectionHandler> HANDLERS = new HashSet<>();
 
-	public final String bindAddress;
-	public final int port;
-
-	public ServerNetworkManager(String ip, int port) {
-		this.bindAddress = ip;
-		this.port = port;
-	}
-
 	public void handleQueuedPackets() {
 		for (Entry<ServerClient, HashSet<Packet>> entry : incomingPackets.entrySet()) {
 			for (Packet packet : entry.getValue()) {

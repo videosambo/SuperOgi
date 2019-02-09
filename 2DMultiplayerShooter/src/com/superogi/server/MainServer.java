@@ -11,14 +11,11 @@ import com.superogi.server.network.SingleConnectionHandler;
 public class MainServer {
 	public static void start() throws IOException {
 
-		String bindAddress = "localhost";
 		int port = 25560;
-		ServerNetworkManager nm = new ServerNetworkManager(bindAddress, port);
-		System.out.println("Starting server on " + bindAddress + ":" + port);
+		ServerNetworkManager nm = new ServerNetworkManager();
+		System.out.println("Starting server on localhost:" + port);
 
-		try (ServerSocket server = new ServerSocket()) {
-			server.bind(new InetSocketAddress(bindAddress, port));
-
+		try (ServerSocket server = new ServerSocket(port)) {
 			Thread tickerThread = new Thread(() -> {
 				while (true) {
 					nm.handleQueuedPackets();
