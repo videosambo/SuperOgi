@@ -1,5 +1,6 @@
 package com.superogi.client.states;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,8 +27,14 @@ public class MenuState extends State implements ActionListener {
 		this.handler = handler;
 		uiManager = new UIManager(handler);
 
-		Display d = new Display();
-		JFrame frame = d.getFrame();
+		JFrame frame = new JFrame("Join");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
+		frame.setLayout(null);
+		frame.setSize(new Dimension(300, 500));
+		frame.setMinimumSize(new Dimension(300, 500));
+		frame.setMaximumSize(new Dimension(300, 500));
 
 		ip = new JTextField("server ip");
 		ip.setBounds(50, 100, 200, 30);
@@ -44,14 +51,17 @@ public class MenuState extends State implements ActionListener {
 		frame.add(name);
 		frame.add(button);
 
-		d.setFrame(frame);
+		frame.setVisible(true);
+		frame.pack();
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (!(e.getSource() == button))
 			return;
+		
+		//System.out.println(ip.getText() + " " + port.getText() + " " + name.getText());
 		String ipString = ip.getText();
-		String portString = port.getText();
+		String portString = port.toString();
 		String username = name.getText();
 
 		try {
