@@ -18,7 +18,7 @@ public class GameState extends State {
 	public GameState(GameHandler handler) {
 		super(handler);
 		// world = new World(handler, "res/worlds/DebugWorld.oki");
-		world = new World(handler, 100, 100);
+		world = new World(handler, "res/worlds/Map1.oki");
 		handler.setWorld(world);
 		uiManager = new UIManager(handler);
 		handler.getMouseManager().setUIManager(uiManager);

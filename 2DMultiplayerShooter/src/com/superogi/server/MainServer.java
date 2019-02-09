@@ -4,9 +4,15 @@ import com.superogi.server.network.ServerNetworkManager;
 
 public class MainServer {
 	public static void start() {
-		System.out.println("Starting server on localhost:25...");
 
-		ServerNetworkManager nm = new ServerNetworkManager("localhost", 1245);
+		String ip = "localhost";
+		int port = 25;
+		
+		ServerNetworkManager nm = new ServerNetworkManager(ip, port);
+		
+		System.out.println("Started server on " + ip + ":" + port);
+		
+		
 		nm.startListening();
 
 		System.out.println("Started and listening!");
