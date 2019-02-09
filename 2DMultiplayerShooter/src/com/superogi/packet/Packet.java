@@ -1,6 +1,9 @@
 package com.superogi.packet;
 
-public abstract class Packet {
+import java.io.Serializable;
+
+public abstract class Packet implements Serializable {
+	private static final long serialVersionUID = 9048067052928705147L;
 	private final long authID;
 
 	public Packet(long authID) {

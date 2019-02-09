@@ -1,10 +1,12 @@
 package com.superogi.client.network;
 
-public class LoginPacket {
-	
+import java.io.Serializable;
+
+public class LoginPacket implements Serializable {
+	private static final long serialVersionUID = 8662019730581869936L;
 	private String name;
 	private long cheatId;
-	
+
 	public LoginPacket(String name) {
 		this.name = name;
 	}
@@ -24,7 +26,5 @@ public class LoginPacket {
 	public void setCheatId(long cheatId) {
 		this.cheatId = cheatId;
 	}
-	
-	
 
 }
