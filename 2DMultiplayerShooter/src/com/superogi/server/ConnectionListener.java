@@ -1,5 +1,6 @@
 package com.superogi.server;
 
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -8,23 +9,22 @@ public class ConnectionListener {
 	private final NetworkManager man;
 	private final ServerSocket server;
 
-	public ConnectionListener(NetworkManager man) {
+	public ConnectionListener(NetworkManager man) throws IOException {
 		this.man = man;
-		try {
-			server = new ServerSocket();
-			server.bind(new InetSocketAddress(man.bindAddress, man.port));
-		} catch (Exception e) {
-			this.server = null;
-			e.printStackTrace();
-			System.exit(1);
-		}
+		server = new ServerSocket();
+		server.bind(new InetSocketAddress(man.bindAddress, man.port));
 	}
 
 	public void listenForConnections() {
 		while (!server.isClosed() && server.isBound()) {
 			// Blocking method
-			Socket s = server.accept();
-			man.addSocketListener(s);
+			try {
+				Socket s = server.accept();
+				man.addSocketHandler(new SingleConnectionHandler(man, s));
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.exit(4);
+			}
 		}
 	}
 }

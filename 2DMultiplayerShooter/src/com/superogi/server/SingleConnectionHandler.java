@@ -1,25 +1,23 @@
 package com.superogi.server;
 
 import java.io.BufferedOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
 import com.superogi.packet.Packet;
 
-public class ConnectionHandler extends Thread {
+public class SingleConnectionHandler extends Thread {
 	private final Socket socket;
+	private final NetworkManager man;
 	private BufferedOutputStream bos;
 	private ObjectInputStream br;
 
-	public ConnectionHandler(final Socket soc) {
+	public SingleConnectionHandler(NetworkManager man, final Socket soc) throws IOException {
 		this.socket = soc;
-		try {
-			this.bos = new BufferedOutputStream(soc.getOutputStream());
-			this.br = new ObjectInputStream(soc.getInputStream());
-		} catch (Exception e) {
-			System.err.println("Failed to create I/O reading for a socket: " + soc.getInetAddress().toString());
-			System.exit(2);
-		}
+		this.bos = new BufferedOutputStream(soc.getOutputStream());
+		this.br = new ObjectInputStream(soc.getInputStream());
+		this.man = man;
 	}
 
 	@Override
@@ -37,6 +35,10 @@ public class ConnectionHandler extends Thread {
 				System.err.println("Failed to read data from a socket.");
 			}
 		}
+	}
+
+	public Socket getSocket() {
+		return socket;
 	}
 
 }

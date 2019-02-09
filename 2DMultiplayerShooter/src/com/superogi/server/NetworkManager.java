@@ -1,12 +1,14 @@
 package com.superogi.server;
 
-import java.net.Socket;
 import java.util.HashSet;
 import java.util.Set;
 
 import com.superogi.packet.Packet;
+import com.superogi.packet.PingPacket;
 
 public class NetworkManager {
+
+	private final Set<SingleConnectionHandler> HANDLERS = new HashSet<>();
 
 	private final Thread networkThread;
 	public final String bindAddress;
@@ -36,7 +38,11 @@ public class NetworkManager {
 	}
 
 	private void handleQueuedPackets() {
+		for (Packet p : incomingPackets) {
+			if (p instanceof PingPacket) {
 
+			}
+		}
 	}
 
 	public void startListening() {
@@ -47,10 +53,7 @@ public class NetworkManager {
 		return incomingPackets;
 	}
 
-	public void addSocketListener(final Socket s) {
-		Thread th = new Thread(() -> {
-			
-		});
-		th.start();
+	public void addSocketHandler(final SingleConnectionHandler connectionHandler) {
+		this.HANDLERS.add(connectionHandler);
 	}
 }
