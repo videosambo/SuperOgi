@@ -2,8 +2,6 @@ package com.superogi.client.renderEngine;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 

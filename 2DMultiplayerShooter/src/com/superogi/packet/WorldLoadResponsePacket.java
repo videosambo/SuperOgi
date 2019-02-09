@@ -1,10 +1,10 @@
 package com.superogi.packet;
 
 public class WorldLoadResponsePacket extends ResponsePacket {
-	private int spawnX, spawnY;
-	private int dimX, dimY;
+	private final int spawnX, spawnY;
+	private final int dimX, dimY;
 
-	private int[][] mapData;
+	private final int[][] mapData;
 
 	public WorldLoadResponsePacket(int spawnX, int spawnY, int dimX, int dimY, int[][] mapData) {
 		this.spawnX = spawnX;
@@ -14,7 +14,24 @@ public class WorldLoadResponsePacket extends ResponsePacket {
 		this.mapData = mapData;
 	}
 
-	private int[][] getMapData() {
+	public int[][] getMapData() {
 		return mapData;
 	}
+
+	public int getSpawnX() {
+		return spawnX;
+	}
+
+	public int getSpawnY() {
+		return spawnY;
+	}
+
+	public int getDimX() {
+		return dimX;
+	}
+
+	public int getDimY() {
+		return dimY;
+	}
+
 }

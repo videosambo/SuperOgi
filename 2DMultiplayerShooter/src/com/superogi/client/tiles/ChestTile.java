@@ -1,7 +1,5 @@
 package com.superogi.client.tiles;
 
-import java.awt.image.BufferedImage;
-
 import com.superogi.client.renderEngine.graphics.Assets;
 
 public class ChestTile extends Tile {
