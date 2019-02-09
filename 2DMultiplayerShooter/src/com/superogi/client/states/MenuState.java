@@ -1,5 +1,6 @@
 package com.superogi.client.states;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,41 +19,50 @@ public class MenuState extends State implements ActionListener {
 	// menu play 520 200 ja 760 300
 	private final UIManager uiManager;
 	private final JButton button;
-	private final JTextField ipField, portField, nameField;
+	private final JTextField ip, port, name;
 	private final GameHandler handler;
 
 	public MenuState(GameHandler handler) {
 		super(handler);
 		this.handler = handler;
-		this.uiManager = new UIManager(handler);
+		uiManager = new UIManager(handler);
 
-		Display d = new Display();
-		JFrame frame = d.getFrame();
+		JFrame frame = new JFrame("Join");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
+		frame.setLayout(null);
+		frame.setSize(new Dimension(300, 500));
+		frame.setMinimumSize(new Dimension(300, 500));
+		frame.setMaximumSize(new Dimension(300, 500));
 
-		this.ipField = new JTextField("server ip");
-		this.ipField.setBounds(50, 100, 200, 30);
-		this.portField = new JTextField("server port");
-		this.portField.setBounds(50, 150, 200, 30);
-		this.nameField = new JTextField("username");
-		this.nameField.setBounds(50, 200, 200, 30);
-		this.button = new JButton("Join");
-		this.button.setBounds(50, 300, 200, 30);
-		this.button.addActionListener(this);
+		ip = new JTextField("server ip");
+		ip.setBounds(50, 100, 200, 30);
+		port = new JTextField("server port");
+		port.setBounds(50, 150, 200, 30);
+		name = new JTextField("username");
+		name.setBounds(50, 200, 200, 30);
+		button = new JButton("Join");
+		button.setBounds(50, 300, 200, 30);
+		button.addActionListener(this);
 
-		frame.add(ipField);
-		frame.add(portField);
-		frame.add(nameField);
+		frame.add(ip);
+		frame.add(port);
+		frame.add(name);
 		frame.add(button);
 
-		d.setFrame(frame);
+		frame.setVisible(true);
+		frame.pack();
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (!(e.getSource() == button))
 			return;
-		String ipString = ipField.getText();
-		String portString = portField.getText();
-		String username = nameField.getText();
+		
+		//System.out.println(ip.getText() + " " + port.getText() + " " + name.getText());
+		String ipString = ip.getText();
+		String portString = port.toString();
+		String username = name.getText();
 
 		try {
 			handler.getClientConnectionHandler().connect(ipString, Integer.parseInt(portString));
