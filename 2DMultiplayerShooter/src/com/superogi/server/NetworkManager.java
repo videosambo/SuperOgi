@@ -47,7 +47,10 @@ public class NetworkManager {
 		return incomingPackets;
 	}
 
-	public void createClient(Socket s) {
-		
+	public void addSocketListener(final Socket s) {
+		Thread th = new Thread(() -> {
+			
+		});
+		th.start();
 	}
 }

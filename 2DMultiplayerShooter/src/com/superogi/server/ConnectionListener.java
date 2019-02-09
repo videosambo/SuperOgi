@@ -24,7 +24,7 @@ public class ConnectionListener {
 		while (!server.isClosed() && server.isBound()) {
 			// Blocking method
 			Socket s = server.accept();
-			man.createClient(s);
+			man.addSocketListener(s);
 		}
 	}
 }
