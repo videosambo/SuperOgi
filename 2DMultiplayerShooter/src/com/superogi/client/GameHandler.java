@@ -9,7 +9,7 @@ public class GameHandler {
 
 	private Game game;
 	private World world;
-	private PingHandler ping;
+	private PingHandler pingHandler;
 	private long authID;
 
 	public long getAuthID() {
@@ -54,6 +54,10 @@ public class GameHandler {
 
 	public void setWorld(World world) {
 		this.world = world;
+	}
+
+	public PingHandler getPingHandler() {
+		return pingHandler;
 	}
 
 }

@@ -2,8 +2,14 @@ package com.superogi.packet;
 
 public class PingResponsePacket extends ResponsePacket {
 
-	public PingResponsePacket() {
+	private int pingID;
 
+	public PingResponsePacket(int pingID) {
+		this.pingID = pingID;
+	}
+
+	public int pingID() {
+		return pingID;
 	}
 
 }
