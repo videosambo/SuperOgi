@@ -61,7 +61,7 @@ public class MenuState extends State implements ActionListener {
 		
 		//System.out.println(ip.getText() + " " + port.getText() + " " + name.getText());
 		String ipString = ip.getText();
-		String portString = port.toString();
+		String portString = port.getText();
 		String username = name.getText();
 
 		try {
