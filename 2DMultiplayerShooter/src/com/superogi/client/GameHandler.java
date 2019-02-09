@@ -3,9 +3,9 @@ package com.superogi.client;
 import com.superogi.client.input.KeyManager;
 import com.superogi.client.input.MouseManager;
 import com.superogi.client.network.ClientConnectionHandler;
+import com.superogi.client.network.PingHandler;
 import com.superogi.client.renderEngine.graphics.GameCamera;
 import com.superogi.client.worlds.World;
-import com.superogi.server.network.PacketHandler;
 
 public class GameHandler {
 

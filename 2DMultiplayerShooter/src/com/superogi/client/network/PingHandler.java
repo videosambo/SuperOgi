@@ -1,8 +1,7 @@
-package com.superogi.client;
+package com.superogi.client.network;
 
 import java.util.HashMap;
 
-import com.superogi.client.network.ClientConnectionHandler;
 import com.superogi.packet.PingPacket;
 
 public class PingHandler {
