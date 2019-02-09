@@ -64,7 +64,7 @@ public class Game implements Runnable {
 		display.getFrame().addMouseMotionListener(mouseManager);
 		display.getCanvas().addMouseListener(mouseManager);
 		display.getCanvas().addMouseMotionListener(mouseManager);
-		assets.init();
+		Assets.init();
 		
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler,0,0);
@@ -186,7 +186,7 @@ public class Game implements Runnable {
 		try {
 			thread.join();
 		} catch (InterruptedException e) {
-			System.err.println("Threadin pys�ytt�misess� sattui virhe!");
+			System.err.println("Threadin pysäyttämisessä sattui virhe!");
 			e.printStackTrace();
 		}
 
