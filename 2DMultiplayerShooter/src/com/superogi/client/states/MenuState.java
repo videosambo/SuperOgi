@@ -11,7 +11,6 @@ import javax.swing.JTextField;
 
 import com.superogi.client.GameHandler;
 import com.superogi.client.network.LoginPacket;
-import com.superogi.client.renderEngine.Display;
 import com.superogi.client.ui.UIManager;
 
 public class MenuState extends State implements ActionListener {
