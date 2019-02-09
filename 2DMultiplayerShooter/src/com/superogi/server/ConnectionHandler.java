@@ -26,9 +26,7 @@ public class ConnectionHandler extends Thread {
 			// Read incoming data
 			try {
 				Object obj = br.readObject();
-				 
-				
-				
+
 			} catch (Exception e) {
 				System.err.println("Failed to read data from a socket.");
 			}
