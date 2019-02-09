@@ -1,11 +1,15 @@
 package com.superogi.client;
 
+import java.util.HashMap;
+
 import com.superogi.client.input.KeyManager;
 import com.superogi.client.input.MouseManager;
 import com.superogi.client.network.ClientConnectionHandler;
 import com.superogi.client.network.PingHandler;
 import com.superogi.client.renderEngine.graphics.GameCamera;
 import com.superogi.client.worlds.World;
+import com.superogi.server.ServerPlayer;
+import com.superogi.server.network.SingleConnectionHandler;
 
 public class GameHandler {
 
@@ -15,8 +19,18 @@ public class GameHandler {
 	private long authID;
 	private ClientConnectionHandler cch;
 
+	/**
+	 * Maps AuthIDs to clients
+	 */
+	private final HashMap<Long, ServerPlayer> authIDs = new HashMap<>();
+
 	public long getAuthID() {
 		return authID;
+	}
+
+	public ServerPlayer createServerClient(long authID, SingleConnectionHandler sch) {
+		ServerPlayer sc = new ServerPlayer(sch);
+		return sc;
 	}
 
 	public GameHandler(Game game, ClientConnectionHandler cch) {

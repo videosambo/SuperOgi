@@ -10,15 +10,15 @@ import com.superogi.packet.ChangePositionResponsePacket;
 import com.superogi.packet.Packet;
 import com.superogi.packet.PingPacket;
 import com.superogi.packet.PingResponsePacket;
-import com.superogi.server.ServerClient;
+import com.superogi.server.ServerPlayer;
 
 public class ServerNetworkManager {
 
-	private final HashMap<ServerClient, HashSet<Packet>> incomingPackets = new HashMap<>();
+	private final HashMap<ServerPlayer, HashSet<Packet>> incomingPackets = new HashMap<>();
 	private final Set<SingleConnectionHandler> HANDLERS = new HashSet<>();
 
 	public void handleQueuedPackets() {
-		for (Entry<ServerClient, HashSet<Packet>> entry : incomingPackets.entrySet()) {
+		for (Entry<ServerPlayer, HashSet<Packet>> entry : incomingPackets.entrySet()) {
 			for (Packet packet : entry.getValue()) {
 				processPacket(entry.getKey(), packet);
 			}
@@ -26,7 +26,7 @@ public class ServerNetworkManager {
 		incomingPackets.clear();
 	}
 
-	private void processPacket(ServerClient client, Packet packet) {
+	private void processPacket(ServerPlayer client, Packet packet) {
 		if (packet instanceof PingPacket) {
 			PingPacket pp = (PingPacket) packet;
 			client.getConnectionHandler().sendPacket(new PingResponsePacket(pp.getPingID()));

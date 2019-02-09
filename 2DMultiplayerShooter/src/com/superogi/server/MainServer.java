@@ -32,10 +32,8 @@ public class MainServer {
 		Thread socketListener = new Thread(() -> {
 			while (true) {
 				// Blocking method
-				System.out.println("Dab");
 				try {
 					Socket s = server.accept();
-					System.out.println("Dab2");
 					nm.addSocketHandler(new SingleConnectionHandler(nm, s));
 				} catch (Exception e) {
 					e.printStackTrace();

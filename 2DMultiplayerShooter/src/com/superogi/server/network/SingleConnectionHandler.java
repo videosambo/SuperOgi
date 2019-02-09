@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Random;
 
+import com.superogi.client.network.LoginPacket;
 import com.superogi.packet.Packet;
 import com.superogi.packet.ResponsePacket;
 
@@ -17,7 +19,7 @@ public class SingleConnectionHandler extends Thread {
 		this.socket = soc;
 		this.bos = new ObjectOutputStream(soc.getOutputStream());
 		this.br = new ObjectInputStream(soc.getInputStream());
-		
+
 		System.out.println("New connection from " + socket.getInetAddress().toString() + ":" + socket.getPort());
 	}
 
@@ -30,6 +32,10 @@ public class SingleConnectionHandler extends Thread {
 				if (!(obj instanceof Packet)) {
 					System.err.println("Invalid packet type: " + obj.getClass().getName());
 					continue;
+				} else if (obj instanceof LoginPacket) {
+					long authID = (long) Math.random() * Long.MAX_VALUE;
+					String requestedName = ((LoginPacket) obj).getName();
+					
 				}
 
 			} catch (Exception e) {
