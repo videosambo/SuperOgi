@@ -4,14 +4,14 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import com.superogi.client.Handler;
+import com.superogi.client.GameHandler;
 
 public class ItemManager {
 	
-	private Handler handler;
+	private GameHandler handler;
 	private ArrayList<Item> items;
 	
-	public ItemManager(Handler handler) {
+	public ItemManager(GameHandler handler) {
 		this.handler = handler;
 		items = new ArrayList<Item>();
 	}
@@ -37,11 +37,11 @@ public class ItemManager {
 		items.add(i);
 	}
 
-	public Handler getHandler() {
+	public GameHandler getHandler() {
 		return handler;
 	}
 
-	public void setHandler(Handler handler) {
+	public void setHandler(GameHandler handler) {
 		this.handler = handler;
 	}
 }

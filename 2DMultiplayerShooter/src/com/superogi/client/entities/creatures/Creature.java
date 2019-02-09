@@ -1,7 +1,7 @@
 package com.superogi.client.entities.creatures;
 
 import com.superogi.client.Game;
-import com.superogi.client.Handler;
+import com.superogi.client.GameHandler;
 import com.superogi.client.entities.Entity;
 import com.superogi.client.tiles.Tile;
 
@@ -14,7 +14,7 @@ public abstract class Creature extends Entity {
 	protected float speed;
 	protected float xMove, yMove;
 
-	public Creature(Handler handler, float x, float y, int width, int height) {
+	public Creature(GameHandler handler, float x, float y, int width, int height) {
 		super(handler, x, y, width, height);
 		speed = DEFAULT_SPEED;
 		xMove = 0;

@@ -4,14 +4,14 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import com.superogi.client.Handler;
+import com.superogi.client.GameHandler;
 
 public class UIManager {
 	
-	private Handler handler;
+	private GameHandler handler;
 	private ArrayList<UIObject> objects;
 	
-	public UIManager(Handler handler) {
+	public UIManager(GameHandler handler) {
 		this.handler = handler;
 		objects = new ArrayList<UIObject>();
 	}
@@ -48,11 +48,11 @@ public class UIManager {
 		objects.remove(o);
 	}
 
-	public Handler getHandler() {
+	public GameHandler getHandler() {
 		return handler;
 	}
 
-	public void setHandler(Handler handler) {
+	public void setHandler(GameHandler handler) {
 		this.handler = handler;
 	}
 

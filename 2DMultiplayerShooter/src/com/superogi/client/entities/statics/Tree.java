@@ -2,14 +2,14 @@ package com.superogi.client.entities.statics;
 
 import java.awt.Graphics;
 
-import com.superogi.client.Handler;
+import com.superogi.client.GameHandler;
 import com.superogi.client.items.Item;
 import com.superogi.client.renderEngine.graphics.Assets;
 import com.superogi.client.tiles.Tile;
 
 public class Tree extends StaticEntity {
 
-	public Tree(Handler handler, float x, float y) {
+	public Tree(GameHandler handler, float x, float y) {
 		super(handler, x + 40, y, 50, 20);
 	}
 

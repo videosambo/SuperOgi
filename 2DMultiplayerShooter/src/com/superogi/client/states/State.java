@@ -2,7 +2,7 @@ package com.superogi.client.states;
 
 import java.awt.Graphics;
 
-import com.superogi.client.Handler;
+import com.superogi.client.GameHandler;
 
 public abstract class State {
 	
@@ -18,9 +18,9 @@ public abstract class State {
 	
 	//luokat
 	
-	protected Handler handler;
+	protected GameHandler handler;
 	
-	public State(Handler handler) {
+	public State(GameHandler handler) {
 		this.handler = handler;
 	}
 	public abstract void tick();

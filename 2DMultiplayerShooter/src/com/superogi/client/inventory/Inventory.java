@@ -4,16 +4,16 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import com.superogi.client.Handler;
+import com.superogi.client.GameHandler;
 import com.superogi.client.items.Item;
 
 public class Inventory {
 	
-	private Handler handler;
+	private GameHandler handler;
 	private boolean active = false;
 	private ArrayList<Item> inventoryItems;
 	
-	public Inventory(Handler handler) {
+	public Inventory(GameHandler handler) {
 		this.handler = handler;
 		inventoryItems = new ArrayList<Item>();
 	}
@@ -45,11 +45,11 @@ public class Inventory {
 		inventoryItems.add(item);
 	}
 
-	public Handler getHandler() {
+	public GameHandler getHandler() {
 		return handler;
 	}
 
-	public void setHandler(Handler handler) {
+	public void setHandler(GameHandler handler) {
 		this.handler = handler;
 	}
 

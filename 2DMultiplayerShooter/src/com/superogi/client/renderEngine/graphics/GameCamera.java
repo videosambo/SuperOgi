@@ -1,15 +1,15 @@
 package com.superogi.client.renderEngine.graphics;
 
-import com.superogi.client.Handler;
+import com.superogi.client.GameHandler;
 import com.superogi.client.entities.Entity;
 import com.superogi.client.tiles.Tile;
 
 public class GameCamera {
 
-	private Handler handler;
+	private GameHandler handler;
 	private float xOffset, yOffset;
 	
-	public GameCamera(Handler handler,float xOffset, float yOffset) {
+	public GameCamera(GameHandler handler,float xOffset, float yOffset) {
 		this.handler = handler;
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;

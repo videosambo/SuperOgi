@@ -2,11 +2,11 @@ package com.superogi.client.states;
 
 import java.awt.Graphics;
 
-import com.superogi.client.Handler;
+import com.superogi.client.GameHandler;
 
 public class SettingsState extends State {
 
-	public SettingsState(Handler handler) {
+	public SettingsState(GameHandler handler) {
 		super(handler);
 	}
 

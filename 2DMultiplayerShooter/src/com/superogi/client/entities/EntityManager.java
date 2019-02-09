@@ -5,13 +5,12 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 
-import com.superogi.client.Handler;
+import com.superogi.client.GameHandler;
 import com.superogi.client.entities.creatures.Player;
-
 
 public class EntityManager {
 
-	private Handler handler;
+	private GameHandler handler;
 	private Player player;
 	private ArrayList<Entity> entities;
 	private Comparator<Entity> renderSorter = new Comparator<Entity>() {
@@ -24,7 +23,7 @@ public class EntityManager {
 		}
 	};
 
-	public EntityManager(Handler handler, Player player) {
+	public EntityManager(GameHandler handler, Player player) {
 		this.handler = handler;
 		this.player = player;
 		entities = new ArrayList<Entity>();
@@ -34,13 +33,18 @@ public class EntityManager {
 
 	public void tick() {
 		Iterator<Entity> it = entities.iterator();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			Entity e = it.next();
 			e.tick();
 			if (!e.isActive())
 				it.remove();
 		}
 		entities.sort(renderSorter);
+
+		// Ping randomly
+		if (Math.random() < 0.005) {
+
+		}
 	}
 
 	public void render(Graphics g) {
@@ -55,11 +59,11 @@ public class EntityManager {
 
 	// Getters setters
 
-	public Handler getHandler() {
+	public GameHandler getHandler() {
 		return handler;
 	}
 
-	public void setHandler(Handler handler) {
+	public void setHandler(GameHandler handler) {
 		this.handler = handler;
 	}
 
