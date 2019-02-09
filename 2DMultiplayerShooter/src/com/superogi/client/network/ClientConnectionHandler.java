@@ -14,13 +14,11 @@ import com.superogi.packet.ResponsePacket;
 import com.superogi.packet.WorldLoadResponsePacket;
 
 public class ClientConnectionHandler {
-	private final PacketHandler ph;
 	private final GameHandler handler;
 
 	private Connection connection;
 
-	public ClientConnectionHandler(PacketHandler ph, GameHandler handler) {
-		this.ph = ph;
+	public ClientConnectionHandler(GameHandler handler) {
 		this.handler = handler;
 	}
 
@@ -44,7 +42,7 @@ public class ClientConnectionHandler {
 					LoginResponsePacket lrp = (LoginResponsePacket) obj;
 					long authID = lrp.getAuthID();
 					System.out.println("AuthID: " + authID);
-					// TODO: Store it
+					handler.setAuthID(authID);
 				} else if (obj instanceof WorldLoadResponsePacket) {
 
 				} else if (obj instanceof PingResponsePacket) {
@@ -85,6 +83,10 @@ public class ClientConnectionHandler {
 			this.socket = s;
 			this.oos = new ObjectOutputStream(s.getOutputStream());
 			this.ois = new ObjectInputStream(s.getInputStream());
+		}
+		
+		public Socket getSocket() {
+			return socket;
 		}
 	}
 }

@@ -73,4 +73,8 @@ public class GameHandler {
 		return cch;
 	}
 
+	public void setAuthID(long authID) {
+		this.authID = authID;
+	}
+
 }
