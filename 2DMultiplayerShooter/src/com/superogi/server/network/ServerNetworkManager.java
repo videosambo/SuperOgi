@@ -5,7 +5,11 @@ import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.superogi.packet.ChangePositionPacket;
+import com.superogi.packet.ChangePositionResponsePacket;
 import com.superogi.packet.Packet;
+import com.superogi.packet.PingPacket;
+import com.superogi.packet.PingResponsePacket;
 import com.superogi.server.ServerClient;
 
 public class ServerNetworkManager {
@@ -45,10 +49,16 @@ public class ServerNetworkManager {
 				processPacket(entry.getKey(), packet);
 			}
 		}
+		incomingPackets.clear();
 	}
 
 	private void processPacket(ServerClient client, Packet packet) {
-
+		if (packet instanceof PingPacket) {
+			client.getConnectionHandler().sendPacket(new PingResponsePacket());
+		} else if (packet instanceof ChangePositionPacket) {
+			// TODO: Check for illegal moves
+			client.getConnectionHandler().sendPacket(new ChangePositionResponsePacket);;
+		}
 	}
 
 	public void startListening() {
