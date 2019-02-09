@@ -57,7 +57,10 @@ public class ServerNetworkManager {
 			client.getConnectionHandler().sendPacket(new PingResponsePacket());
 		} else if (packet instanceof ChangePositionPacket) {
 			// TODO: Check for illegal moves
-			client.getConnectionHandler().sendPacket(new ChangePositionResponsePacket);;
+			ChangePositionPacket p = (ChangePositionPacket) packet;
+			float approvedX = p.getNewX();
+			float approvedY = p.getNewY();
+			client.getConnectionHandler().sendPacket(new ChangePositionResponsePacket(approvedX, approvedY));
 		}
 	}
 
