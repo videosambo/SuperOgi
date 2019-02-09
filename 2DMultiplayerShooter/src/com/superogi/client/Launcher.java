@@ -13,8 +13,10 @@ import com.superogi.server.MainServer;
 
 public class Launcher {
 	public static void main(String[] args) {
-		if (args.length != 0)
-			MainServer.start();
+		if (args.length != 0) {
+			if (args[0].equals("server"))
+				MainServer.start();
+		}
 		else {
 			Game game = new Game(1280, 720, "2D Multiplayer Shooter Launcher");
 			game.start();
