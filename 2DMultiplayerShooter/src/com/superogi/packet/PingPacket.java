@@ -1,5 +1,7 @@
 package com.superogi.packet;
 
-public abstract class PingPacket {
-
+public class PingPacket implements Packet {
+	public PingPacket() {
+		
+	}
 }
