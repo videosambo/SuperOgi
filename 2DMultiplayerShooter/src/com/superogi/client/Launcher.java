@@ -1,5 +1,7 @@
 package com.superogi.client;
 
+import com.superogi.server.MainServer;
+
 /*
  * @author videosambo
  * Yes, I know, this is very copied CodeNMore's tutorial series. 
@@ -9,14 +11,13 @@ package com.superogi.client;
  * Fun fact, I do know how to make 3D game engines with OpenGL but I didn't know how to make 1D engine like this.
  */
 
-
 public class Launcher {
-
 	public static void main(String[] args) {
-		
-		Game game = new Game(1280, 720, "1D Game test");
-		game.start();
-		
+		if (args.length != 0)
+			MainServer.start();
+		else {
+			Game game = new Game(1280, 720, "2D Multiplayer Shooter Launcher");
+			game.start();
+		}
 	}
-
 }
