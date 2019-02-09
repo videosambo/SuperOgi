@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
-import com.superogi.client.entities.creatures.Player;
 import com.superogi.client.input.KeyManager;
 import com.superogi.client.input.MouseManager;
 import com.superogi.client.renderEngine.Display;
@@ -84,7 +83,7 @@ public class Game implements Runnable {
 
 	}
 
-	// renderöinti
+	// renderï¿½inti
 	private void render() {
 		bs = display.getCanvas().getBufferStrategy();
 		if (bs == null) {
@@ -187,7 +186,7 @@ public class Game implements Runnable {
 		try {
 			thread.join();
 		} catch (InterruptedException e) {
-			System.err.println("Threadin pysäyttämisessä sattui virhe!");
+			System.err.println("Threadin pysï¿½yttï¿½misessï¿½ sattui virhe!");
 			e.printStackTrace();
 		}
 
