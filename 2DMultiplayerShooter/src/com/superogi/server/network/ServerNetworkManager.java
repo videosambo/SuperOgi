@@ -21,11 +21,13 @@ public class ServerNetworkManager {
 		this.bindAddress = ip;
 		this.port = port;
 		this.networkThread = new Thread(() -> {
-			loop();
-			try {
-				Thread.sleep(1000 / 60);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+			while (true) {
+				loop();
+				try {
+					Thread.sleep(1000 / 60);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}, "networkThread");
 	}
