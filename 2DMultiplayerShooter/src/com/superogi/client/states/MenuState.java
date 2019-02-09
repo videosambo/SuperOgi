@@ -18,30 +18,30 @@ public class MenuState extends State implements ActionListener {
 	// menu play 520 200 ja 760 300
 	private final UIManager uiManager;
 	private final JButton button;
-	private final JTextField ip, port, name;
+	private final JTextField ipField, portField, nameField;
 	private final GameHandler handler;
 
 	public MenuState(GameHandler handler) {
 		super(handler);
 		this.handler = handler;
-		uiManager = new UIManager(handler);
+		this.uiManager = new UIManager(handler);
 
 		Display d = new Display();
 		JFrame frame = d.getFrame();
 
-		ip = new JTextField("server ip");
-		ip.setBounds(50, 100, 200, 30);
-		port = new JTextField("server port");
-		port.setBounds(50, 150, 200, 30);
-		name = new JTextField("username");
-		name.setBounds(50, 200, 200, 30);
-		button = new JButton("Join");
-		button.setBounds(50, 300, 200, 30);
-		button.addActionListener(this);
+		this.ipField = new JTextField("server ip");
+		this.ipField.setBounds(50, 100, 200, 30);
+		this.portField = new JTextField("server port");
+		this.portField.setBounds(50, 150, 200, 30);
+		this.nameField = new JTextField("username");
+		this.nameField.setBounds(50, 200, 200, 30);
+		this.button = new JButton("Join");
+		this.button.setBounds(50, 300, 200, 30);
+		this.button.addActionListener(this);
 
-		frame.add(ip);
-		frame.add(port);
-		frame.add(name);
+		frame.add(ipField);
+		frame.add(portField);
+		frame.add(nameField);
 		frame.add(button);
 
 		d.setFrame(frame);
@@ -50,9 +50,9 @@ public class MenuState extends State implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (!(e.getSource() == button))
 			return;
-		String ipString = ip.getText();
-		String portString = port.getText();
-		String username = name.getText();
+		String ipString = ipField.getText();
+		String portString = portField.getText();
+		String username = nameField.getText();
 
 		try {
 			handler.getClientConnectionHandler().connect(ipString, Integer.parseInt(portString));
