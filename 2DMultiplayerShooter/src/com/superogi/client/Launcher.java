@@ -15,7 +15,7 @@ public class Launcher {
 	public static void main(String[] args) {
 		if (args.length != 0) {
 			if (args[0].equals("server")) {
-				if (args.length >= 1)
+				if (!args[1].isEmpty())
 					MainServer.port = Integer.getInteger(args[1]);
 				MainServer.start();
 			}
