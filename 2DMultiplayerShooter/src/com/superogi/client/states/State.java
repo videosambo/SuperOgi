@@ -2,7 +2,6 @@ package com.superogi.client.states;
 
 import java.awt.Graphics;
 
-import com.superogi.client.Game;
 import com.superogi.client.Handler;
 
 public abstract class State {
