@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import com.superogi.client.Handler;
+import com.superogi.client.GameHandler;
 import com.superogi.client.entities.Entity;
 import com.superogi.client.inventory.Inventory;
 import com.superogi.client.renderEngine.graphics.Animation;
@@ -19,7 +19,7 @@ public class Player extends Creature {
 	float speed = Creature.DEFAULT_SPEED;
 	int animSpeed = 300;
 	
-	public Player(Handler handler, float x, float y) {
+	public Player(GameHandler handler, float x, float y) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
 
 		bounds.x = 38;

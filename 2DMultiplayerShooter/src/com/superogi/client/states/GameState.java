@@ -2,7 +2,7 @@ package com.superogi.client.states;
 
 import java.awt.Graphics;
 
-import com.superogi.client.Handler;
+import com.superogi.client.GameHandler;
 import com.superogi.client.renderEngine.graphics.Assets;
 import com.superogi.client.ui.ClickListener;
 import com.superogi.client.ui.UIImageButton;
@@ -15,7 +15,7 @@ public class GameState extends State {
 	private boolean escMenu = false;
 	private UIManager uiManager;
 
-	public GameState(Handler handler) {
+	public GameState(GameHandler handler) {
 		super(handler);
 		// world = new World(handler, "res/worlds/DebugWorld.oki");
 		world = new World(handler, "res/worlds/Map1.oki");

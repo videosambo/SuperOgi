@@ -3,7 +3,7 @@ package com.superogi.client.worlds;
 import java.awt.Graphics;
 import java.util.Random;
 
-import com.superogi.client.Handler;
+import com.superogi.client.GameHandler;
 import com.superogi.client.entities.EntityManager;
 import com.superogi.client.entities.creatures.Player;
 import com.superogi.client.entities.statics.Tree;
@@ -14,7 +14,7 @@ import com.superogi.client.utils.Utils;
 
 public class World {
 
-	private Handler handler;
+	private GameHandler handler;
 	private Random random = new Random();
 	private SimplexNoise noise = new SimplexNoise(0);
 	private int width, height;
@@ -23,7 +23,7 @@ public class World {
 	private EntityManager entityManager;
 	private ItemManager itemManager;
 
-	public World(Handler handler) {
+	public World(GameHandler handler) {
 		this.handler = handler;
 		entityManager = new EntityManager(handler, new Player(handler, 0, 0));
 		itemManager = new ItemManager(handler);
@@ -31,7 +31,7 @@ public class World {
 		entityManager.getPlayer().setY(spawnY * Tile.TILE_DIMENSION);
 	}
 
-	public World(Handler handler, String path) {
+	public World(GameHandler handler, String path) {
 		this.handler = handler;
 		itemManager = new ItemManager(handler);
 		entityManager = new EntityManager(handler, new Player(handler, 0, 0));
@@ -41,7 +41,7 @@ public class World {
 		entityManager.getPlayer().setY(spawnY * Tile.TILE_DIMENSION);
 	}
 
-	public World(Handler handler, int width, int height) {
+	public World(GameHandler handler, int width, int height) {
 		this.handler = handler;
 		itemManager = new ItemManager(handler);
 		entityManager = new EntityManager(handler, new Player(handler, 0, 0));
@@ -188,11 +188,11 @@ public class World {
 		return width;
 	}
 
-	public Handler getHandler() {
+	public GameHandler getHandler() {
 		return handler;
 	}
 
-	public void setHandler(Handler handler) {
+	public void setHandler(GameHandler handler) {
 		this.handler = handler;
 	}
 

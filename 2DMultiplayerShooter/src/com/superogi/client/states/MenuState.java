@@ -2,7 +2,7 @@ package com.superogi.client.states;
 
 import java.awt.Graphics;
 
-import com.superogi.client.Handler;
+import com.superogi.client.GameHandler;
 import com.superogi.client.renderEngine.graphics.Assets;
 import com.superogi.client.ui.ClickListener;
 import com.superogi.client.ui.UIImageButton;
@@ -13,7 +13,7 @@ public class MenuState extends State {
 	//menu play 520 200 ja 760 300
 	private UIManager uiManager;
 
-	public MenuState(Handler handler) {
+	public MenuState(GameHandler handler) {
 		super(handler);
 		uiManager = new UIManager(handler);
 		handler.getMouseManager().setUIManager(uiManager);

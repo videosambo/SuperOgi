@@ -38,7 +38,7 @@ public class Game implements Runnable {
 	private GameCamera gameCamera;
 
 	// handler
-	private Handler handler;
+	private GameHandler handler;
 
 	private BufferStrategy bs;
 	private Graphics g;
@@ -66,7 +66,7 @@ public class Game implements Runnable {
 		display.getCanvas().addMouseMotionListener(mouseManager);
 		Assets.init();
 
-		handler = new Handler(this);
+		handler = new GameHandler(this);
 		gameCamera = new GameCamera(handler, 0, 0);
 
 		gameState = new GameState(handler);

@@ -3,19 +3,19 @@ package com.superogi.client.entities;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.superogi.client.Handler;
+import com.superogi.client.GameHandler;
 
 public abstract class Entity {
 
 	public static final int DEFAULT_HEALTH = 10;
 	protected float x, y;
 	protected int width, height;
-	protected Handler handler;
+	protected GameHandler handler;
 	protected Rectangle bounds;
 	protected int health;
 	protected boolean active = true;
 
-	public Entity(Handler handler, float x, float y, int width, int height) {
+	public Entity(GameHandler handler, float x, float y, int width, int height) {
 		this.handler = handler;
 		this.x = x;
 		this.y = y;

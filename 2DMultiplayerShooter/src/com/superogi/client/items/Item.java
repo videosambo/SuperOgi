@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import com.superogi.client.Handler;
+import com.superogi.client.GameHandler;
 import com.superogi.client.renderEngine.graphics.Assets;
 
 public class Item {
@@ -18,7 +18,7 @@ public class Item {
 
 	public static final int ITEMDIMENSION = 50;
 	
-	protected Handler handler;
+	protected GameHandler handler;
 	protected BufferedImage texture;
 	protected String name;
 	protected final int id;
@@ -72,7 +72,7 @@ public class Item {
 	
 	//GETTERS AND SETTERS
 
-	public Handler getHandler() {
+	public GameHandler getHandler() {
 		return handler;
 	}
 
@@ -84,7 +84,7 @@ public class Item {
 		this.pickedUp = pickedUp;
 	}
 
-	public void setHandler(Handler handler) {
+	public void setHandler(GameHandler handler) {
 		this.handler = handler;
 	}
 
