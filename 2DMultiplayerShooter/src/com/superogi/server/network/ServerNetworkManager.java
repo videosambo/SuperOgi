@@ -1,21 +1,21 @@
 package com.superogi.server.network;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import com.superogi.packet.Packet;
-import com.superogi.packet.PingPacket;
+import com.superogi.server.ServerClient;
 
 public class ServerNetworkManager {
 
+	private final HashMap<ServerClient, HashSet<Packet>> incomingPackets = new HashMap<>();
 	private final Set<SingleConnectionHandler> HANDLERS = new HashSet<>();
 
 	private final Thread networkThread;
 	public final String bindAddress;
 	public final int port;
-
-	// Packets
-	private final Set<Packet> incomingPackets = new HashSet<>();
 
 	public ServerNetworkManager(String ip, int port) {
 		this.bindAddress = ip;
@@ -40,19 +40,19 @@ public class ServerNetworkManager {
 	}
 
 	private void handleQueuedPackets() {
-		for (Packet p : incomingPackets) {
-			if (p instanceof PingPacket) {
-
+		for (Entry<ServerClient, HashSet<Packet>> entry : incomingPackets.entrySet()) {
+			for (Packet packet : entry.getValue()) {
+				processPacket(entry.getKey(), packet);
 			}
 		}
 	}
 
-	public void startListening() {
-		networkThread.start();
+	private void processPacket(ServerClient client, Packet packet) {
+
 	}
 
-	public Set<Packet> getIncomingPackets() {
-		return incomingPackets;
+	public void startListening() {
+		networkThread.start();
 	}
 
 	public void addSocketHandler(final SingleConnectionHandler connectionHandler) {
