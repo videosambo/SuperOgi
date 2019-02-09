@@ -2,7 +2,6 @@ package com.superogi.client.entities.statics;
 
 import java.awt.Graphics;
 
-import com.superogi.client.Game;
 import com.superogi.client.Handler;
 import com.superogi.client.items.Item;
 import com.superogi.client.renderEngine.graphics.Assets;
