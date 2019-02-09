@@ -7,7 +7,6 @@ import java.awt.image.BufferStrategy;
 
 import com.superogi.client.input.KeyManager;
 import com.superogi.client.input.MouseManager;
-import com.superogi.client.network.ClientConnectionHandler;
 import com.superogi.client.renderEngine.Display;
 import com.superogi.client.renderEngine.graphics.Assets;
 import com.superogi.client.renderEngine.graphics.GameCamera;

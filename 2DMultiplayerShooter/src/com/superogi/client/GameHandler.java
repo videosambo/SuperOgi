@@ -61,13 +61,16 @@ public class GameHandler {
 		this.world = world;
 	}
 
-<<<<<<< HEAD
 	public PacketHandler getPacketHandler() {
 		return ph;
-=======
+	}
+
 	public PingHandler getPingHandler() {
 		return pingHandler;
->>>>>>> branch 'master' of https://github.com/videosambo/SuperOgi.git
+	}
+
+	public ClientConnectionHandler getClientConnectionHandler() {
+		return cch;
 	}
 
 }

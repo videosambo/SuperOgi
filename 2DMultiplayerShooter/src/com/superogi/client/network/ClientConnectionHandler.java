@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 import com.superogi.client.GameHandler;
 import com.superogi.packet.LoginResponsePacket;
@@ -13,22 +14,20 @@ import com.superogi.packet.ResponsePacket;
 import com.superogi.packet.WorldLoadResponsePacket;
 
 public class ClientConnectionHandler {
-	private final ObjectOutputStream oos;
-	private final ObjectInputStream ois;
 	private final PacketHandler ph;
 	private final GameHandler handler;
 
-	public ClientConnectionHandler(PacketHandler ph, Socket s, GameHandler handler) throws IOException {
+	private Connection connection;
+
+	public ClientConnectionHandler(PacketHandler ph, GameHandler handler) {
 		this.ph = ph;
 		this.handler = handler;
-		this.oos = new ObjectOutputStream(s.getOutputStream());
-		this.ois = new ObjectInputStream(s.getInputStream());
 	}
 
 	public void sendPacket(Packet packet) {
 		try {
-			oos.writeObject(packet);
-			oos.flush();
+			connection.oos.writeObject(packet);
+			connection.oos.flush();
 		} catch (Exception e) {
 			System.err.println("Failed to send a packet: " + packet.getClass().getName());
 			e.printStackTrace();
@@ -38,7 +37,7 @@ public class ClientConnectionHandler {
 	public void listen() {
 		try {
 			Object obj;
-			while ((obj = ois.readObject()) != null) {
+			while ((obj = connection.ois.readObject()) != null) {
 				if (!(obj instanceof ResponsePacket))
 					continue;
 				else if (obj instanceof LoginResponsePacket) {
@@ -47,10 +46,10 @@ public class ClientConnectionHandler {
 					System.out.println("AuthID: " + authID);
 					// TODO: Store it
 				} else if (obj instanceof WorldLoadResponsePacket) {
-					
+
 				} else if (obj instanceof PingResponsePacket) {
 					PingResponsePacket prp = (PingResponsePacket) obj;
-					handler.getPingHandler().returnPing(prp.pingID());;
+					handler.getPingHandler().returnPing(prp.pingID());
 				}
 			}
 		} catch (Exception e) {
@@ -65,11 +64,27 @@ public class ClientConnectionHandler {
 
 	public void sendLogicPacket(LoginPacket lp) {
 		try {
-			oos.writeObject(lp);
-			oos.flush();
+			connection.oos.writeObject(lp);
+			connection.oos.flush();
 		} catch (Exception e) {
 			System.err.println("Failed to send a packet: " + lp.getClass().getName());
 			e.printStackTrace();
+		}
+	}
+
+	public void connect(String ip, int port) throws UnknownHostException, IOException {
+		this.connection = new Connection(new Socket(ip, port));
+	}
+
+	private class Connection {
+		private final Socket socket;
+		private final ObjectInputStream ois;
+		private final ObjectOutputStream oos;
+
+		public Connection(Socket s) throws IOException {
+			this.socket = s;
+			this.oos = new ObjectOutputStream(s.getOutputStream());
+			this.ois = new ObjectInputStream(s.getInputStream());
 		}
 	}
 }
