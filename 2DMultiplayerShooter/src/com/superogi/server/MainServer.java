@@ -1,6 +1,7 @@
 package com.superogi.server;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -8,11 +9,20 @@ import com.superogi.server.network.ServerNetworkManager;
 import com.superogi.server.network.SingleConnectionHandler;
 
 public class MainServer {
+	
+	public static int port = 25560;
+	
 	public static void start() throws IOException {
-
-		int port = 25560;
+		
+		boolean resolved = false;
+		
+		String host = InetAddress.getLocalHost().getHostAddress();
+		
 		ServerNetworkManager nm = new ServerNetworkManager();
-		System.out.println("Starting server on localhost:" + port);
+		System.out.println("Starting server on " + host +":" + port);
+		
+		
+		
 
 		try (ServerSocket server = new ServerSocket(port)) {
 			Thread tickerThread = new Thread(() -> {
