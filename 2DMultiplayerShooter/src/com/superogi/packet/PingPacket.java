@@ -1,7 +1,8 @@
 package com.superogi.packet;
 
-public class PingPacket implements Packet {
-	public PingPacket() {
-		
+public class PingPacket extends Packet {
+	public PingPacket(long authID) {
+		super(authID);
 	}
+
 }

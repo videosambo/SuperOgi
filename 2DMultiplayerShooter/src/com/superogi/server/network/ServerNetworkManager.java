@@ -1,4 +1,4 @@
-package com.superogi.server;
+package com.superogi.server.network;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,7 +6,7 @@ import java.util.Set;
 import com.superogi.packet.Packet;
 import com.superogi.packet.PingPacket;
 
-public class NetworkManager {
+public class ServerNetworkManager {
 
 	private final Set<SingleConnectionHandler> HANDLERS = new HashSet<>();
 
@@ -17,7 +17,7 @@ public class NetworkManager {
 	// Packets
 	private final Set<Packet> incomingPackets = new HashSet<>();
 
-	public NetworkManager(String ip, int port) {
+	public ServerNetworkManager(String ip, int port) {
 		this.bindAddress = ip;
 		this.port = port;
 		this.networkThread = new Thread(() -> {
