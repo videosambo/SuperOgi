@@ -47,10 +47,10 @@ public class ClientConnectionHandler {
 					System.out.println("AuthID: " + authID);
 					// TODO: Store it
 				} else if (obj instanceof WorldLoadResponsePacket) {
-
+					
 				} else if (obj instanceof PingResponsePacket) {
 					PingResponsePacket prp = (PingResponsePacket) obj;
-
+					handler.getPingHandler().returnPing(prp.pingID());;
 				}
 			}
 		} catch (Exception e) {

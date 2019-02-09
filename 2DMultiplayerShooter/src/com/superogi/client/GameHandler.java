@@ -11,7 +11,7 @@ public class GameHandler {
 
 	private Game game;
 	private World world;
-	private PingHandler ping;
+	private PingHandler pingHandler;
 	private long authID;
 	private ClientConnectionHandler cch;
 	private final PacketHandler ph;
@@ -61,8 +61,13 @@ public class GameHandler {
 		this.world = world;
 	}
 
+<<<<<<< HEAD
 	public PacketHandler getPacketHandler() {
 		return ph;
+=======
+	public PingHandler getPingHandler() {
+		return pingHandler;
+>>>>>>> branch 'master' of https://github.com/videosambo/SuperOgi.git
 	}
 
 }

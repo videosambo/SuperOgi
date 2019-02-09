@@ -54,7 +54,8 @@ public class ServerNetworkManager {
 
 	private void processPacket(ServerClient client, Packet packet) {
 		if (packet instanceof PingPacket) {
-			client.getConnectionHandler().sendPacket(new PingResponsePacket());
+			PingPacket pp = (PingPacket) packet;
+			client.getConnectionHandler().sendPacket(new PingResponsePacket(pp.getPingID()));
 		} else if (packet instanceof ChangePositionPacket) {
 			// TODO: Check for illegal moves
 			ChangePositionPacket p = (ChangePositionPacket) packet;
