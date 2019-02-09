@@ -36,11 +36,11 @@ public class MenuState extends State implements ActionListener {
 		frame.setMinimumSize(new Dimension(300, 500));
 		frame.setMaximumSize(new Dimension(300, 500));
 
-		ip = new JTextField("server ip");
+		ip = new JTextField("localhost");
 		ip.setBounds(50, 100, 200, 30);
-		port = new JTextField("server port");
+		port = new JTextField("25660");
 		port.setBounds(50, 150, 200, 30);
-		name = new JTextField("username");
+		name = new JTextField("Username");
 		name.setBounds(50, 200, 200, 30);
 		button = new JButton("Join");
 		button.setBounds(50, 300, 200, 30);
