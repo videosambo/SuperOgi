@@ -13,12 +13,13 @@ public class MainServer {
 	public static void start() {
 		
 		String host = null;
-		boolean bindet = true;
+		boolean bindet = false;
 		
 		try {
 			host = InetAddress.getLocalHost().getHostAddress();
 		} catch (UnknownHostException e) {
-			bindet = false;
+			System.err.println("Cannot resolve local ip address");
+			bindet = true;
 			e.printStackTrace();
 		}
 
