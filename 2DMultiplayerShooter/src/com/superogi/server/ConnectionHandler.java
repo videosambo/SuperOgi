@@ -4,6 +4,8 @@ import java.io.BufferedOutputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
+import com.superogi.packet.Packet;
+
 public class ConnectionHandler extends Thread {
 	private final Socket socket;
 	private BufferedOutputStream bos;
@@ -26,6 +28,10 @@ public class ConnectionHandler extends Thread {
 			// Read incoming data
 			try {
 				Object obj = br.readObject();
+				if (!(obj instanceof Packet)) {
+					System.err.println("Invalid packet type: " + obj.getClass().getName());
+					continue;
+				}
 
 			} catch (Exception e) {
 				System.err.println("Failed to read data from a socket.");
