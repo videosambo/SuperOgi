@@ -20,7 +20,8 @@ public class GameHandler {
 		return authID;
 	}
 
-	public GameHandler(Game game) {
+	public GameHandler(Game game, ClientConnectionHandler cch) {
+		this.cch = cch;
 		this.game = game;
 		this.ph = new PacketHandler();
 	}

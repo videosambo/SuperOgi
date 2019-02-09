@@ -7,6 +7,7 @@ import java.awt.image.BufferStrategy;
 
 import com.superogi.client.input.KeyManager;
 import com.superogi.client.input.MouseManager;
+import com.superogi.client.network.ClientConnectionHandler;
 import com.superogi.client.renderEngine.Display;
 import com.superogi.client.renderEngine.graphics.Assets;
 import com.superogi.client.renderEngine.graphics.GameCamera;
@@ -66,7 +67,7 @@ public class Game implements Runnable {
 		display.getCanvas().addMouseMotionListener(mouseManager);
 		Assets.init();
 
-		handler = new GameHandler(this);
+		handler = new GameHandler(this, new ClientConnectionHandler(handler));
 		gameCamera = new GameCamera(handler, 0, 0);
 
 		gameState = new GameState(handler);
