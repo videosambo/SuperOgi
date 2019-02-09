@@ -1,8 +1,6 @@
 package com.superogi.client.network;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -24,8 +22,8 @@ public class ClientConnectionHandler {
 
 	public void sendPacket(Packet packet) {
 		try {
-			connection.oos.writeObject(packet);
-			connection.oos.flush();
+			connection.getOutput().writeObject(packet);
+			connection.getOutput().flush();
 		} catch (Exception e) {
 			System.err.println("Failed to send a packet: " + packet.getClass().getName());
 			e.printStackTrace();
@@ -35,7 +33,7 @@ public class ClientConnectionHandler {
 	public void listen() {
 		try {
 			Object obj;
-			while ((obj = connection.ois.readObject()) != null) {
+			while ((obj = connection.getInput().readObject()) != null) {
 				if (!(obj instanceof ResponsePacket))
 					continue;
 				else if (obj instanceof LoginResponsePacket) {
@@ -62,8 +60,8 @@ public class ClientConnectionHandler {
 
 	public void sendLogicPacket(LoginPacket lp) {
 		try {
-			connection.oos.writeObject(lp);
-			connection.oos.flush();
+			connection.getOutput().writeObject(lp);
+			connection.getOutput().flush();
 		} catch (Exception e) {
 			System.err.println("Failed to send a packet: " + lp.getClass().getName());
 			e.printStackTrace();
@@ -72,21 +70,7 @@ public class ClientConnectionHandler {
 
 	public void connect(String ip, int port) throws UnknownHostException, IOException {
 		this.connection = new Connection(new Socket(ip, port));
+		System.out.println("Connected to server " + ip + "!");
 	}
 
-	private class Connection {
-		private final Socket socket;
-		private final ObjectInputStream ois;
-		private final ObjectOutputStream oos;
-
-		public Connection(Socket s) throws IOException {
-			this.socket = s;
-			this.oos = new ObjectOutputStream(s.getOutputStream());
-			this.ois = new ObjectInputStream(s.getInputStream());
-		}
-		
-		public Socket getSocket() {
-			return socket;
-		}
-	}
 }
