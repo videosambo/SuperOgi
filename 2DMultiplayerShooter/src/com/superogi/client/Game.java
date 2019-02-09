@@ -20,7 +20,7 @@ public class Game implements Runnable {
 	private Display display;
 	private int korkeus, leveys;
 	public String title;
-	
+
 	public static int zoom = 100;
 
 	public int fps;
@@ -28,18 +28,18 @@ public class Game implements Runnable {
 	// states
 	public State gameState;
 	public State menuState;
-	private State settingsState;
-	
-	// input 
+	public State settingsState;
+
+	// input
 	private KeyManager keyManager;
 	private MouseManager mouseManager;
-	
-	//camera
+
+	// camera
 	private GameCamera gameCamera;
 
-	//handler
+	// handler
 	private Handler handler;
-	
+
 	private BufferStrategy bs;
 	private Graphics g;
 
@@ -65,10 +65,10 @@ public class Game implements Runnable {
 		display.getCanvas().addMouseListener(mouseManager);
 		display.getCanvas().addMouseMotionListener(mouseManager);
 		Assets.init();
-		
+
 		handler = new Handler(this);
-		gameCamera = new GameCamera(handler,0,0);
-		
+		gameCamera = new GameCamera(handler, 0, 0);
+
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
 		settingsState = new SettingsState(handler);
@@ -95,20 +95,16 @@ public class Game implements Runnable {
 		g.clearRect(0, 0, leveys, korkeus);
 		if (State.getState() != null)
 			State.getState().render(g);
-		//alku
-		
-		
-		
-		
-		
-		//loppu
+		// alku
+
+		// loppu
 		// fps
 		g.setColor(Color.RED);
 		g.setFont(new Font("Impact", Font.PLAIN, 20));
 		g.drawString("FPS: " + fps, 20, 30);
-		
-		//hiiri pos
-		
+
+		// hiiri pos
+
 		g.drawString("Mouse: X: " + getMouseManager().getMouseX() + "   Y: " + getMouseManager().getMouseY(), 20, 60);
 		bs.show();
 		g.dispose();
@@ -151,15 +147,15 @@ public class Game implements Runnable {
 
 		stop();
 	}
-	
+
 	public KeyManager getKeyManager() {
 		return keyManager;
 	}
-	
+
 	public MouseManager getMouseManager() {
 		return mouseManager;
 	}
-	
+
 	public GameCamera getGameCamera() {
 		return gameCamera;
 	}
