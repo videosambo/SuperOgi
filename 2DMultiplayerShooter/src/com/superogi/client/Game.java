@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import com.superogi.client.renderengine.Display;
+import com.superogi.client.renderengine.grapchics.GameCamera;
 
 public class Game implements Runnable {
 	
@@ -13,7 +14,15 @@ public class Game implements Runnable {
 	
 	public int fps;
 	
-	public Handler handler;
+	//states
+	
+	//input
+	
+	//camera
+	private GameCamera gameCamera;
+	
+	//handler
+	private Handler handler;
 	
 	private BufferStrategy bs;
 	private Graphics g;
@@ -92,5 +101,9 @@ public class Game implements Runnable {
 			System.err.println("An error occupied when tried to terminite thread");
 			e.printStackTrace();
 		}
+	}
+
+	public GameCamera getGameCamera() {
+		return gameCamera;
 	}
 }
