@@ -60,14 +60,14 @@ public class MenuState extends State implements ActionListener {
 
 		// System.out.println(ip.getText() + " " + port.getText() + " " +
 		// name.getText());
-		String ipString = ip.getText();
-		String portString = port.getText();
-		String username = name.getText();
+		String ipString = (String)ip.getText();
+		String portString = (String) port.getText();
+		String username = (String)name.getText();
 
 		try {
 			// handler.getClientConnectionHandler().connect(ipString,
 			// Integer.parseInt(portString));
-			handler.getClientConnectionHandler().connect("localhost", 25560);
+			handler.getClientConnectionHandler().connect(ipString, Integer.parseInt(portString));
 			handler.getClientConnectionHandler().sendLogicPacket(new LoginPacket(username));
 		} catch (Exception e1) {
 			e1.printStackTrace();
