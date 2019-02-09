@@ -13,6 +13,8 @@ public class Display {
 	int leveys, korkeus;
 	String title;
 	
+	public Display() {}
+	
 	public Display(int leveys, int korkeus, String title) {
 		super();
 		this.leveys = leveys;
@@ -47,6 +49,10 @@ public class Display {
 
 	public JFrame getFrame() {
 		return frame;
+	}
+	
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
 	}
 	
 	

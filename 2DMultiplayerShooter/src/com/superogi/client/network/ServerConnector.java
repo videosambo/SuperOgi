@@ -1,16 +1,20 @@
 package com.superogi.client.network;
 
 public class ServerConnector {
-	
-	private String ip, port, name;
-	
-	public ServerConnector(String ip, String port, String name) {
+
+	private String ip, port;
+
+	private ClientConnectionHandler cch;
+
+	public ServerConnector(ClientConnectionHandler cch, String ip, String port) {
+		this.cch = cch;
 		this.ip = ip;
 		this.port = port;
-		this.name = name;
-		
-		
 	}
-	
+
+	public void sendLoginPacket(String name) {
+		LoginPacket lp = new LoginPacket(name);
+		cch.sendLogicPacket(lp);
+	}
 
 }

@@ -62,4 +62,14 @@ public class ClientConnectionHandler {
 	public GameHandler getGameHandler() {
 		return handler;
 	}
+
+	public void sendLogicPacket(LoginPacket lp) {
+		try {
+			oos.writeObject(lp);
+			oos.flush();
+		} catch (Exception e) {
+			System.err.println("Failed to send a packet: " + lp.getClass().getName());
+			e.printStackTrace();
+		}
+	}
 }
