@@ -54,7 +54,7 @@ public class MenuState extends State implements ActionListener{
 		String portString = port.getText();
 		String username = name.getText();
 		
-		
+		//asd
 		ServerConnector sc = new ServerConnector(ipString, portString);
 		handler.cch = new ClientConnectionHandler(handler.getPacketHandler(), handler);
 	}
