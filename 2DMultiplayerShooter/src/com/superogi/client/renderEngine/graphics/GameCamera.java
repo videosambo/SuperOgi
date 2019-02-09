@@ -1,6 +1,8 @@
-package com.superogi.client.renderengine.grapchics;
+package com.superogi.client.renderEngine.graphics;
 
 import com.superogi.client.Handler;
+import com.superogi.client.entities.Entity;
+import com.superogi.client.tiles.Tile;
 
 public class GameCamera {
 
