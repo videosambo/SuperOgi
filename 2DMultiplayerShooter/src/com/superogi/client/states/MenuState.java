@@ -37,7 +37,7 @@ public class MenuState extends State implements ActionListener {
 
 		ip = new JTextField("localhost");
 		ip.setBounds(50, 100, 200, 30);
-		port = new JTextField("25660");
+		port = new JTextField("25560");
 		port.setBounds(50, 150, 200, 30);
 		name = new JTextField("Username");
 		name.setBounds(50, 200, 200, 30);
