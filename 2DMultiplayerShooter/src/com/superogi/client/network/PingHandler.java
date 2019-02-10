@@ -20,7 +20,7 @@ public class PingHandler {
 	}
 
 	public void sendPing() {
-		conHandler.sendPacket(
+		conHandler.queuePacket(
 				new PingPacket(conHandler.getGameHandler().getAuthID(), (int) (Math.random() * Integer.MAX_VALUE)));
 	}
 

@@ -8,7 +8,6 @@ import java.util.Set;
 
 import com.superogi.client.GameHandler;
 import com.superogi.packet.LoginResponsePacket;
-import com.superogi.packet.Packet;
 import com.superogi.packet.PingResponsePacket;
 import com.superogi.packet.ResponsePacket;
 import com.superogi.packet.WorldLoadResponsePacket;

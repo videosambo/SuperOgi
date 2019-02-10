@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Random;
 
 import com.superogi.client.network.LoginPacket;
 import com.superogi.packet.Packet;
