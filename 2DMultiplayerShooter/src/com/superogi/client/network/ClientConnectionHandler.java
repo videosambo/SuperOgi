@@ -3,6 +3,8 @@ package com.superogi.client.network;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.superogi.client.GameHandler;
 import com.superogi.packet.LoginResponsePacket;
@@ -15,17 +17,24 @@ public class ClientConnectionHandler {
 	private final GameHandler handler;
 
 	private Connection connection;
+	private final Set<Object> packetQueue = new HashSet<>();
 
 	public ClientConnectionHandler(GameHandler handler) {
 		this.handler = handler;
 	}
 
-	public void sendPacket(Packet packet) {
+	public void queuePacket(Object obj) {
+		this.packetQueue.add(obj);
+	}
+
+	public void clearQueue() {
 		try {
-			connection.getOutput().writeObject(packet);
+			for (Object packet : packetQueue) {
+				connection.getOutput().writeObject(packet);
+			}
 			connection.getOutput().flush();
 		} catch (Exception e) {
-			System.err.println("Failed to send a packet: " + packet.getClass().getName());
+			System.err.println("Failed to send a packet.");
 			e.printStackTrace();
 		}
 	}
@@ -46,6 +55,8 @@ public class ClientConnectionHandler {
 				} else if (obj instanceof PingResponsePacket) {
 					PingResponsePacket prp = (PingResponsePacket) obj;
 					handler.getPingHandler().returnPing(prp.pingID());
+				} else {
+					System.err.println("Packet not parsed: " + obj.getClass().getName());
 				}
 			}
 		} catch (Exception e) {
@@ -58,20 +69,13 @@ public class ClientConnectionHandler {
 		return handler;
 	}
 
-	public void sendLogicPacket(LoginPacket lp) {
-		try {
-			connection.getOutput().writeObject(lp);
-			connection.getOutput().flush();
-		} catch (Exception e) {
-			System.err.println("Failed to send a packet: " + lp.getClass().getName());
-			e.printStackTrace();
-		}
-	}
-
 	public void connect(String ip, int port) throws UnknownHostException, IOException {
 		System.out.println("Connecting to " + ip + ":" + port);
 		this.connection = new Connection(new Socket(ip, port));
 		System.out.println("Connected to server " + ip + "!");
+		new Thread(() -> {
+			listen();
+		}).start();
 	}
 
 }

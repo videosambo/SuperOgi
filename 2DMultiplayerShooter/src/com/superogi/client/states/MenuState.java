@@ -68,7 +68,7 @@ public class MenuState extends State implements ActionListener {
 			// handler.getClientConnectionHandler().connect(ipString,
 			// Integer.parseInt(portString));
 			handler.getClientConnectionHandler().connect("localhost", 25560);
-			handler.getClientConnectionHandler().sendLogicPacket(new LoginPacket(username));
+			handler.getClientConnectionHandler().queuePacket(new LoginPacket(username));
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
