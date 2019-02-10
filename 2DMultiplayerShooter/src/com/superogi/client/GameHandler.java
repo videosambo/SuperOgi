@@ -25,13 +25,9 @@ public class GameHandler {
 		ServerPlayer sc = new ServerPlayer(sch);
 		return sc;
 	}
-	
-	public GameHandler(Game game) {
-		this.game = game;
-	}
 
-	public GameHandler(Game game, ClientConnectionHandler cch) {
-		this.cch = cch;
+	public GameHandler(Game game) {
+		this.cch = new ClientConnectionHandler(this);
 		this.game = game;
 	}
 

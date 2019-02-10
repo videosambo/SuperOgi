@@ -1,6 +1,5 @@
 package com.superogi.client;
 
-import com.superogi.client.network.ClientConnectionHandler;
 import com.superogi.server.MainServer;
 
 /**

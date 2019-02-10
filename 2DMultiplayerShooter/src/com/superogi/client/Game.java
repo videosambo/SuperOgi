@@ -7,7 +7,6 @@ import java.awt.image.BufferStrategy;
 
 import com.superogi.client.input.KeyManager;
 import com.superogi.client.input.MouseManager;
-import com.superogi.client.network.ClientConnectionHandler;
 import com.superogi.client.renderEngine.Display;
 import com.superogi.client.renderEngine.graphics.Assets;
 import com.superogi.client.renderEngine.graphics.GameCamera;
@@ -51,7 +50,7 @@ public class Game implements Runnable {
 	private Thread thread;
 
 	public Game(int leveys, int korkeus, String title) {
-		handler = new GameHandler(this, new ClientConnectionHandler(handler));
+		handler = new GameHandler(this);
 		this.leveys = leveys;
 		this.korkeus = korkeus;
 		this.title = title;
