@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 
 import com.superogi.client.network.LoginPacket;
 import com.superogi.packet.LoginResponsePacket;
@@ -38,14 +39,17 @@ public class SingleConnectionHandler extends Thread {
 					System.err.println("Invalid packet type: " + obj.getClass().getName());
 					continue;
 				}
-			} catch (Exception e) {
-				System.err.println("Failed to read data from a socket.");
+			} catch (SocketException e) {
+				System.err.println("Socket closed.");
 				try {
 					socket.close();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-				break;
+				return;
+			} catch (Exception e) {
+				System.err.println("Failed to read data from a socket.");
+				return;
 			}
 		}
 	}
