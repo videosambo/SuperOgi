@@ -59,7 +59,7 @@ public class ClientConnectionHandler {
 					System.out.println("AuthID: " + authID);
 					handler.setAuthID(authID);
 					
-					//sankon muutoksia./
+					//sankon muutoksia.
 					MenuState ms = new MenuState(handler);
 					State.setState(new GameState(handler));
 					ms.deleteMenu();
