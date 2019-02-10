@@ -18,7 +18,6 @@ import com.superogi.client.states.State;
 
 public class Game implements Runnable {
 
-	private final GameHandler gh;
 	private Display display;
 	private int korkeus, leveys;
 	public String title;
@@ -52,7 +51,7 @@ public class Game implements Runnable {
 	private Thread thread;
 
 	public Game(int leveys, int korkeus, String title) {
-		this.gh = new GameHandler(this, new ClientConnectionHandler(gh));
+		handler = new GameHandler(this, new ClientConnectionHandler(handler));
 		this.leveys = leveys;
 		this.korkeus = korkeus;
 		this.title = title;
@@ -69,7 +68,6 @@ public class Game implements Runnable {
 		display.getCanvas().addMouseMotionListener(mouseManager);
 		Assets.init();
 
-		handler = new GameHandler(this, new ClientConnectionHandler(handler));
 		gameCamera = new GameCamera(handler, 0, 0);
 
 		gameState = new GameState(handler);
@@ -84,7 +82,7 @@ public class Game implements Runnable {
 		if (State.getState() != null)
 			State.getState().tick();
 
-		gh.getClientConnectionHandler().clearQueue();
+		handler.getClientConnectionHandler().clearQueue();
 	}
 
 	// render�inti

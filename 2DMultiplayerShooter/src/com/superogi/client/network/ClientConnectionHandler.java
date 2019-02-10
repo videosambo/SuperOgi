@@ -27,6 +27,8 @@ public class ClientConnectionHandler {
 	}
 
 	public void clearQueue() {
+		if (connection == null)
+			return;
 		try {
 			for (Object packet : packetQueue) {
 				connection.getOutput().writeObject(packet);
