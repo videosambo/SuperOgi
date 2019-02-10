@@ -32,8 +32,10 @@ public class ClientConnectionHandler {
 		try {
 			for (Object packet : packetQueue) {
 				connection.getOutput().writeObject(packet);
+				System.out.println("Sent packet: " + packet.getClass().getName());
 			}
 			connection.getOutput().flush();
+			packetQueue.clear();
 		} catch (Exception e) {
 			System.err.println("Failed to send a packet.");
 			e.printStackTrace();

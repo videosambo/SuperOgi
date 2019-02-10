@@ -34,7 +34,9 @@ public class MainServer {
 				// Blocking method
 				try {
 					Socket s = server.accept();
-					nm.addSocketHandler(new SingleConnectionHandler(nm, s));
+					SingleConnectionHandler sch = new SingleConnectionHandler(nm, s);
+					nm.addSocketHandler(sch);
+					sch.start();
 				} catch (Exception e) {
 					e.printStackTrace();
 					System.exit(4);
