@@ -69,10 +69,14 @@ public class Game implements Runnable {
 
 		gameCamera = new GameCamera(handler, 0, 0);
 
+		MenuState menuStateClass = new MenuState(handler); 
+		
 		gameState = new GameState(handler);
-		menuState = new MenuState(handler);
+		menuState = menuStateClass;
 		settingsState = new SettingsState(handler);
 		State.setState(menuState);
+		menuStateClass.createLoginMenu();
+		
 	}
 
 	// peli logiikka
