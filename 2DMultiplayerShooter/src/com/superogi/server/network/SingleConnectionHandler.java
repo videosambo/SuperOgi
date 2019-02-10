@@ -40,6 +40,12 @@ public class SingleConnectionHandler extends Thread {
 				}
 			} catch (Exception e) {
 				System.err.println("Failed to read data from a socket.");
+				try {
+					socket.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				break;
 			}
 		}
 	}
