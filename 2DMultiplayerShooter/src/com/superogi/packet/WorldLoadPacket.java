@@ -8,6 +8,10 @@ public class WorldLoadPacket extends Packet {
 		this.worldName = worldName;
 	}
 
+	public WorldLoadPacket(long authID) {
+		super(authID);
+	}
+
 	public String getWorldName() {
 		return worldName;
 	}

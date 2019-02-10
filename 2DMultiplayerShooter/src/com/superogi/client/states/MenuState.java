@@ -23,13 +23,12 @@ public class MenuState extends State implements ActionListener {
 	private JTextField name;
 	private GameHandler handler;
 	
-	private JFrame frame = new JFrame("Join");
+	private static JFrame frame = new JFrame("Join");
 	
 
 	public MenuState(GameHandler handler) {
 		super(handler);
 		this.handler = handler;
-
 	}
 	
 	public void createLoginMenu() {
@@ -88,8 +87,8 @@ public class MenuState extends State implements ActionListener {
 	public void render(Graphics g) {}
 	
 	public void deleteMenu() {
-		this.frame.setVisible(false);
-		this.frame.dispose();
+		frame.setVisible(false);
+		frame.dispose();
 	}
 
 }

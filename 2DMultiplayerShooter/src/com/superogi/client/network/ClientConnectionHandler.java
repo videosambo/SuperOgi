@@ -7,10 +7,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.superogi.client.GameHandler;
+import com.superogi.client.states.GameState;
 import com.superogi.client.states.MenuState;
+import com.superogi.client.states.State;
 import com.superogi.packet.LoginResponsePacket;
 import com.superogi.packet.PingResponsePacket;
 import com.superogi.packet.ResponsePacket;
+import com.superogi.packet.WorldLoadPacket;
 import com.superogi.packet.WorldLoadResponsePacket;
 
 public class ClientConnectionHandler {
@@ -56,9 +59,11 @@ public class ClientConnectionHandler {
 					System.out.println("AuthID: " + authID);
 					handler.setAuthID(authID);
 					
-					//sankon muutoksia.
+					//sankon muutoksia./
 					MenuState ms = new MenuState(handler);
+					State.setState(new GameState(handler));
 					ms.deleteMenu();
+					this.queuePacket(new WorldLoadPacket(authID));
 					
 				} else if (obj instanceof WorldLoadResponsePacket) {
 
