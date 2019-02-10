@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import com.superogi.client.network.LoginPacket;
+import com.superogi.packet.LoginResponsePacket;
 import com.superogi.packet.Packet;
 import com.superogi.packet.ResponsePacket;
 
@@ -34,7 +35,7 @@ public class SingleConnectionHandler extends Thread {
 				} else if (obj instanceof LoginPacket) {
 					long authID = (long) Math.random() * Long.MAX_VALUE;
 					String requestedName = ((LoginPacket) obj).getName();
-					
+					sendPacket(new LoginResponsePacket(authID));
 				}
 
 			} catch (Exception e) {
@@ -52,7 +53,7 @@ public class SingleConnectionHandler extends Thread {
 			this.bos.writeObject(packet);
 			this.bos.flush();
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 

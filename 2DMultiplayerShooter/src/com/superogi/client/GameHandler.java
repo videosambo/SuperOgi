@@ -1,7 +1,5 @@
 package com.superogi.client;
 
-import java.util.HashMap;
-
 import com.superogi.client.input.KeyManager;
 import com.superogi.client.input.MouseManager;
 import com.superogi.client.network.ClientConnectionHandler;
@@ -18,11 +16,6 @@ public class GameHandler {
 	private PingHandler pingHandler;
 	private long authID;
 	private ClientConnectionHandler cch;
-
-	/**
-	 * Maps AuthIDs to clients
-	 */
-	private final HashMap<Long, ServerPlayer> authIDs = new HashMap<>();
 
 	public long getAuthID() {
 		return authID;
