@@ -20,13 +20,14 @@ public class MenuState extends State implements ActionListener {
 	private final JButton button;
 	private final JTextField ip, port, name;
 	private final GameHandler handler;
+	
+	private JFrame frame = new JFrame("Join");
 
 	public MenuState(GameHandler handler) {
 		super(handler);
 		this.handler = handler;
 		uiManager = new UIManager(handler);
 
-		JFrame frame = new JFrame("Join");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
@@ -85,6 +86,11 @@ public class MenuState extends State implements ActionListener {
 
 	@Override
 	public void render(Graphics g) {
+	}
+	
+	public void deleteMenu() {
+		this.frame.setVisible(false);
+		this.frame.dispose();
 	}
 
 }

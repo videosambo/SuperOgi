@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.superogi.client.GameHandler;
+import com.superogi.client.states.MenuState;
 import com.superogi.packet.LoginResponsePacket;
 import com.superogi.packet.PingResponsePacket;
 import com.superogi.packet.ResponsePacket;
@@ -54,6 +55,11 @@ public class ClientConnectionHandler {
 					long authID = lrp.getAuthID();
 					System.out.println("AuthID: " + authID);
 					handler.setAuthID(authID);
+					
+					//sankon muutoksia
+					MenuState ms = new MenuState(handler);
+					ms.deleteMenu();
+					
 				} else if (obj instanceof WorldLoadResponsePacket) {
 
 				} else if (obj instanceof PingResponsePacket) {
