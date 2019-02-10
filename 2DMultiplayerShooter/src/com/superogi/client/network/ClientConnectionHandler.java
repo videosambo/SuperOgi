@@ -42,6 +42,7 @@ public class ClientConnectionHandler {
 		try {
 			Object obj;
 			while ((obj = connection.getInput().readObject()) != null) {
+				System.out.println("Got response: " + obj.getClass().getName());
 				if (!(obj instanceof ResponsePacket))
 					continue;
 				else if (obj instanceof LoginResponsePacket) {
