@@ -31,7 +31,7 @@ public class SingleConnectionHandler extends Thread {
 				Object obj = br.readObject();
 
 				if (obj instanceof LoginPacket) {
-					long authID = (long) Math.random() * Long.MAX_VALUE;
+					long authID = (long) (Math.random() * Long.MAX_VALUE);
 					String requestedName = ((LoginPacket) obj).getName();
 					sendPacket(new LoginResponsePacket(authID));
 				} else if (!(obj instanceof Packet)) {
