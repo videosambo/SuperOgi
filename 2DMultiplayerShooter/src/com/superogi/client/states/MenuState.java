@@ -37,7 +37,7 @@ public class MenuState extends State implements ActionListener {
 
 		ip = new JTextField("localhost");
 		ip.setBounds(50, 100, 200, 30);
-		port = new JTextField("25660");
+		port = new JTextField("25560");
 		port.setBounds(50, 150, 200, 30);
 		name = new JTextField("Username");
 		name.setBounds(50, 200, 200, 30);
@@ -60,14 +60,19 @@ public class MenuState extends State implements ActionListener {
 
 		// System.out.println(ip.getText() + " " + port.getText() + " " +
 		// name.getText());
-		String ipString = ip.getText();
-		String portString = port.getText();
-		String username = name.getText();
+		String ipString = (String) ip.getText();
+		String portString = (String) port.getText();
+		String username = (String) name.getText();
+
+		System.out.println(ipString);
+		System.out.println(portString);
+		System.out.println(username);
 
 		try {
 			// handler.getClientConnectionHandler().connect(ipString,
 			// Integer.parseInt(portString));
-			handler.getClientConnectionHandler().connect("localhost", 25560);
+
+			handler.getClientConnectionHandler().connect(ipString, Integer.parseInt(portString));
 			handler.getClientConnectionHandler().queuePacket(new LoginPacket(username));
 		} catch (Exception e1) {
 			e1.printStackTrace();
