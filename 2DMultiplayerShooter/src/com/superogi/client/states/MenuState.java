@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
+import com.superogi.client.Game;
 import com.superogi.client.GameHandler;
 import com.superogi.client.network.LoginPacket;
 import com.superogi.client.ui.UIManager;
@@ -16,18 +17,22 @@ import com.superogi.client.ui.UIManager;
 public class MenuState extends State implements ActionListener {
 
 	// menu play 520 200 ja 760 300
-	private final UIManager uiManager;
-	private final JButton button;
-	private final JTextField ip, port, name;
-	private final GameHandler handler;
+	private JButton button;
+	private JTextField ip;
+	private JTextField port;
+	private JTextField name;
+	private GameHandler handler;
 	
 	private JFrame frame = new JFrame("Join");
+	
 
 	public MenuState(GameHandler handler) {
 		super(handler);
 		this.handler = handler;
-		uiManager = new UIManager(handler);
 
+	}
+	
+	public void createLoginMenu() {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
@@ -58,16 +63,12 @@ public class MenuState extends State implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (!(e.getSource() == button))
 			return;
-
+		
 		// System.out.println(ip.getText() + " " + port.getText() + " " +
 		// name.getText());
 		String ipString = (String) ip.getText();
 		String portString = (String) port.getText();
 		String username = (String) name.getText();
-
-		System.out.println(ipString);
-		System.out.println(portString);
-		System.out.println(username);
 
 		try {
 			// handler.getClientConnectionHandler().connect(ipString,
@@ -81,12 +82,10 @@ public class MenuState extends State implements ActionListener {
 	}
 
 	@Override
-	public void tick() {
-	}
+	public void tick() {}
 
 	@Override
-	public void render(Graphics g) {
-	}
+	public void render(Graphics g) {}
 	
 	public void deleteMenu() {
 		this.frame.setVisible(false);
