@@ -10,6 +10,7 @@ import com.superogi.client.network.LoginPacket;
 import com.superogi.packet.LoginResponsePacket;
 import com.superogi.packet.Packet;
 import com.superogi.packet.ResponsePacket;
+import com.superogi.packet.WorldLoadPacket;
 
 public class SingleConnectionHandler extends Thread {
 	private final Socket socket;
@@ -20,7 +21,6 @@ public class SingleConnectionHandler extends Thread {
 		this.socket = soc;
 		this.bos = new ObjectOutputStream(soc.getOutputStream());
 		this.br = new ObjectInputStream(soc.getInputStream());
-
 		System.out.println("New connection from " + socket.getInetAddress().toString() + ":" + socket.getPort());
 	}
 
@@ -35,9 +35,16 @@ public class SingleConnectionHandler extends Thread {
 					long authID = (long) (Math.random() * Long.MAX_VALUE);
 					String requestedName = ((LoginPacket) obj).getName();
 					sendPacket(new LoginResponsePacket(authID));
+					
 				} else if (!(obj instanceof Packet)) {
 					System.err.println("Invalid packet type: " + obj.getClass().getName());
 					continue;
+				} else if (obj instanceof WorldLoadPacket) {
+					WorldLoadPacket wlp = (WorldLoadPacket) obj;
+					String name = wlp.getWorldName();
+					long key = wlp.getAuthID();
+					
+					
 				}
 			} catch (SocketException e) {
 				System.err.println("Socket closed.");

@@ -66,7 +66,9 @@ public class ClientConnectionHandler {
 					this.queuePacket(new WorldLoadPacket(authID));
 					
 				} else if (obj instanceof WorldLoadResponsePacket) {
-
+					WorldLoadResponsePacket wlrp = (WorldLoadResponsePacket) obj;
+					//testailua
+					System.out.println(wlrp.getDimX() + "\n" + wlrp.getDimY());
 				} else if (obj instanceof PingResponsePacket) {
 					PingResponsePacket prp = (PingResponsePacket) obj;
 					handler.getPingHandler().returnPing(prp.pingID());
